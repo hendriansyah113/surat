@@ -7,6 +7,13 @@ class Penduduk extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+
+		// Cek apakah pengguna sudah login
+		if (!$this->session->userdata('is_login')) {
+			// Jika belum login, arahkan ke halaman login
+			redirect('user');
+		}
+
 		$this->load->model('M_Penduduk');
 	}
 

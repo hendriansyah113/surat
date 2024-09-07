@@ -7,6 +7,12 @@ class Akta_Kelahiran extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		// Cek apakah pengguna sudah login
+		if (!$this->session->userdata('is_login')) {
+			// Jika belum login, arahkan ke halaman login
+			redirect('user');
+		}
+
 		$this->load->model('M_Akta_Kelahiran');
 		$this->load->model('M_Penduduk');
 	}
@@ -14,6 +20,7 @@ class Akta_Kelahiran extends CI_Controller
 	public function index()
 	{
 		$data = [
+			'username' => $this->db->get_where('users', ['id' => $this->session->userdata('id')])->row(),
 			'title' => 'Daftar Akta Kelahiran',
 			'data_akta_kelahiran' => $this->M_Akta_Kelahiran->get_all_akta()
 		];

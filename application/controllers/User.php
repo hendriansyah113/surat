@@ -7,12 +7,24 @@ class User extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		// Cek apakah pengguna sudah login
+		if (!$this->session->userdata('is_login')) {
+			// Jika belum login, arahkan ke halaman login
+			redirect('user');
+		}
 		$this->load->model('M_User');
 	}
 
 	public function index()
 	{
-		$this->load->view('admin/login');
+		// Cek apakah pengguna sudah login
+		if ($this->session->userdata('is_login')) {
+			// Jika sudah login, arahkan ke dashboard
+			redirect('dashboard');
+		} else {
+			// Jika belum login, tampilkan halaman login
+			$this->load->view('admin/login');
+		}
 	}
 
 	public function authenticate()
