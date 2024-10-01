@@ -35,13 +35,13 @@ class Akta_Kelahiran extends CI_Controller
 		$data['penduduk_list'] = $this->M_Penduduk->get_all_penduduk();
 
 		// Aturan validasi input
-		$this->form_validation->set_rules('id_penduduk', 'Nama Penduduk', 'required');
+		$this->form_validation->set_rules('id_penduduk', 'Nama Penduduk', 'required|is_unique[akta_kelahiran.id_penduduk]');
 		$this->form_validation->set_rules('no_akta', 'No. Akta Kelahiran', 'required|numeric');
 
 		// Cek apakah validasi berhasil
 		if ($this->form_validation->run()) {
 			// Konfigurasi untuk upload file
-			$config['upload_path'] = './uploads/kk/';
+			$config['upload_path'] = './uploads/akta/';
 			$config['allowed_types'] = 'jpg|jpeg|png|pdf';
 			$config['max_size'] = 2048; // 2MB
 			$config['file_name'] = 'akta_' . time();
@@ -64,7 +64,7 @@ class Akta_Kelahiran extends CI_Controller
 				// Simpan data ke database
 				$this->M_Akta_Kelahiran->insert_akta($akta_data);
 
-				// Set pesan sukses dan redirect ke halaman daftar kk
+				// Set pesan sukses dan redirect ke halaman daftar akta
 				$this->session->set_flashdata('success', 'Data Akta Kelahiran berhasil disimpan.');
 				redirect('akta_kelahiran');
 			} else {
@@ -127,7 +127,7 @@ class Akta_Kelahiran extends CI_Controller
 			// Simpan perubahan ke database
 			$this->M_Akta_Kelahiran->update_akta($id_akta, $akta_data);
 
-			// Set pesan sukses dan redirect ke halaman daftar kk
+			// Set pesan sukses dan redirect ke halaman daftar akta
 			$this->session->set_flashdata('success', 'Data Akta Kelahiran berhasil diperbarui.');
 			return redirect('akta_kelahiran');
 		} else {

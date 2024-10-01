@@ -19,6 +19,9 @@ class SK_Nikah extends CI_Controller
 	// Fungsi untuk Petugas
 	public function index()
 	{
+		if ($this->session->userdata('level') === 'admin') {
+			redirect('dashboard');
+		}
 		$data['title'] = 'Daftar Pengajuan Surat Keterangan nikah';
 		$data['permohonan_list'] = $this->M_SK_Nikah->get_all_permohonan();
 		$this->load->view('admin/sk_nikah/petugas/index', $data);
@@ -26,6 +29,9 @@ class SK_Nikah extends CI_Controller
 
 	public function tambah()
 	{
+		if ($this->session->userdata('level') === 'admin') {
+			redirect('dashboard');
+		}
 		$data['title'] = 'Tambah Pengajuan Surat Keterangan Nikah';
 		$data['penduduk_list'] = $this->M_Penduduk->get_all_penduduk();
 
@@ -54,6 +60,9 @@ class SK_Nikah extends CI_Controller
 
 	public function edit($id)
 	{
+		if ($this->session->userdata('level') === 'admin') {
+			redirect('dashboard');
+		}
 		$data['title'] = 'Edit Pengajuan Surat Nikah';
 		$data['permohonan'] = $this->M_SK_Nikah->get_permohonan_by_id($id);
 		$data['penduduk_list'] = $this->M_Penduduk->get_all_penduduk();
@@ -81,6 +90,9 @@ class SK_Nikah extends CI_Controller
 
 	public function hapus($id)
 	{
+		if ($this->session->userdata('level') === 'admin') {
+			redirect('dashboard');
+		}
 		if ($this->M_SK_Nikah->delete_permohonan($id)) {
 			$this->session->set_flashdata('success', 'Pengajuan berhasil dihapus.');
 		} else {
@@ -91,6 +103,9 @@ class SK_Nikah extends CI_Controller
 
 	public function hapus_admin($id)
 	{
+		if ($this->session->userdata('level') === 'pegawai') {
+			redirect('dashboard');
+		}
 		if ($this->M_SK_Nikah->delete_permohonan($id)) {
 			$this->session->set_flashdata('success', 'Pengajuan berhasil dihapus.');
 		} else {
@@ -102,6 +117,9 @@ class SK_Nikah extends CI_Controller
 	// Fungsi untuk Admin
 	public function admin_list()
 	{
+		if ($this->session->userdata('level') === 'pegawai') {
+			redirect('dashboard');
+		}
 		$data['title'] = 'Daftar Permohonan Surat Keterangan Usaha';
 		$data['permohonan_list'] = $this->M_SK_Nikah->get_all_permohonan();
 		$this->load->view('admin/sk_nikah/admin/index', $data);
@@ -109,6 +127,9 @@ class SK_Nikah extends CI_Controller
 
 	public function acc_permohonan($id)
 	{
+		if ($this->session->userdata('level') === 'pegawai') {
+			redirect('dashboard');
+		}
 		$data = ['status' => 'Disetujui'];
 		$this->M_SK_Nikah->update_permohonan($id, $data);
 		$this->session->set_flashdata('success', 'Permohonan berhasil disetujui.');
@@ -117,6 +138,9 @@ class SK_Nikah extends CI_Controller
 
 	public function tolak_permohonan($id)
 	{
+		if ($this->session->userdata('level') === 'pegawai') {
+			redirect('dashboard');
+		}
 		$data['title'] = 'Alasan Penolakan';
 		$data['permohonan'] = $this->M_SK_Nikah->get_permohonan_by_id($id);
 
@@ -142,6 +166,9 @@ class SK_Nikah extends CI_Controller
 
 	public function cetak_surat($id)
 	{
+		if ($this->session->userdata('level') === 'pegawai') {
+			redirect('dashboard');
+		}
 		$permohonan = $this->M_SK_Nikah->get_permohonan_by_id($id);
 		$data['permohonan'] = $permohonan;
 
@@ -151,6 +178,9 @@ class SK_Nikah extends CI_Controller
 
 	public function cancel_permohonan($id)
 	{
+		if ($this->session->userdata('level') === 'pegawai') {
+			redirect('dashboard');
+		}
 		// Mengubah status permohonan menjadi 'Menunggu'
 		$this->M_SK_Nikah->update_status($id, 'Menunggu');
 

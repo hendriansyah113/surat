@@ -34,7 +34,7 @@ class Penduduk extends CI_Controller
 
 		// Aturan validasi input
 		$this->form_validation->set_rules('nama', 'Nama', 'required');
-		$this->form_validation->set_rules('nik', 'NIK', 'required|numeric|exact_length[16]');
+		$this->form_validation->set_rules('nik', 'NIK', 'required|numeric|exact_length[16]|is_unique[penduduk.nik]');
 		$this->form_validation->set_rules('alamat', 'Alamat', 'required');
 		$this->form_validation->set_rules('pekerjaan', 'Pekerjaan', 'required');
 		$this->form_validation->set_rules('unit', 'Unit Kerja/Intansi', 'required');

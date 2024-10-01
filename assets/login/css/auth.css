@@ -7,7 +7,7 @@ html {
 }
 
 body {
-	background-image: url("http://127.0.0.1/ciawigebang/asset/image/background.jpg");
+	background-image: url("http://localhost/surat/assets/login/image/background2.jpeg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	margin: 0 0 30px; /* bottom = footer height */

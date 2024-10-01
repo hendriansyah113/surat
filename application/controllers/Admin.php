@@ -17,8 +17,8 @@ class Admin extends CI_Controller
 		$this->load->library('session');
 
 		// Check if user is logged in and is an admin
-		if ($this->session->userdata('level') !== 'admin') {
-			redirect('login');
+		if ($this->session->userdata('level') !== 'capil') {
+			redirect('dashboard');
 		}
 	}
 

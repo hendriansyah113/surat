@@ -49,46 +49,49 @@
 					<div class="alert alert-primary" role="alert">
 						<strong>Selamat Datang <?= $username->username ?></strong>
 					</div>
-					<!-- Alert Pengajuan Domisili -->
-					<?php if ($ada_pengajuan_domisili): ?>
-						<div class="alert alert-warning" role="alert">
-							<strong>Perhatian!</strong> Ada pengajuan SK Domisili yang memerlukan persetujuan.
-						</div>
-					<?php endif; ?>
 
-					<!-- Alert Pengajuan Tugas -->
-					<?php if ($ada_pengajuan_tugas): ?>
-						<div class="alert alert-warning" role="alert">
-							<strong>Perhatian!</strong> Ada pengajuan SK Tugas yang memerlukan persetujuan.
-						</div>
-					<?php endif; ?>
+					<?php if ($this->session->userdata('level') === 'admin'): ?>
+						<!-- Alert Pengajuan Domisili -->
+						<?php if ($ada_pengajuan_domisili): ?>
+							<div class="alert alert-warning" role="alert">
+								<strong>Perhatian!</strong> Ada pengajuan SK Domisili yang memerlukan persetujuan.
+							</div>
+						<?php endif; ?>
 
-					<!-- Alert Pengajuan Penghasilan -->
-					<?php if ($ada_pengajuan_penghasilan): ?>
-						<div class="alert alert-warning" role="alert">
-							<strong>Perhatian!</strong> Ada pengajuan SK Penghasilan yang memerlukan persetujuan.
-						</div>
-					<?php endif; ?>
+						<!-- Alert Pengajuan Tugas -->
+						<?php if ($ada_pengajuan_tugas): ?>
+							<div class="alert alert-warning" role="alert">
+								<strong>Perhatian!</strong> Ada pengajuan SK Tugas yang memerlukan persetujuan.
+							</div>
+						<?php endif; ?>
 
-					<!-- Alert Pengajuan Tidak Mampu -->
-					<?php if ($ada_pengajuan_tidak_mampu): ?>
-						<div class="alert alert-warning" role="alert">
-							<strong>Perhatian!</strong> Ada pengajuan SK Tidak Mampu yang memerlukan persetujuan.
-						</div>
-					<?php endif; ?>
+						<!-- Alert Pengajuan Penghasilan -->
+						<?php if ($ada_pengajuan_penghasilan): ?>
+							<div class="alert alert-warning" role="alert">
+								<strong>Perhatian!</strong> Ada pengajuan SK Penghasilan yang memerlukan persetujuan.
+							</div>
+						<?php endif; ?>
 
-					<!-- Alert Pengajuan Usaha -->
-					<?php if ($ada_pengajuan_usaha): ?>
-						<div class="alert alert-warning" role="alert">
-							<strong>Perhatian!</strong> Ada pengajuan SK Usaha yang memerlukan persetujuan.
-						</div>
-					<?php endif; ?>
+						<!-- Alert Pengajuan Tidak Mampu -->
+						<?php if ($ada_pengajuan_tidak_mampu): ?>
+							<div class="alert alert-warning" role="alert">
+								<strong>Perhatian!</strong> Ada pengajuan SK Tidak Mampu yang memerlukan persetujuan.
+							</div>
+						<?php endif; ?>
 
-					<!-- Alert Pengajuan Nikah -->
-					<?php if ($ada_pengajuan_nikah): ?>
-						<div class="alert alert-warning" role="alert">
-							<strong>Perhatian!</strong> Ada pengajuan SK Nikah yang memerlukan persetujuan.
-						</div>
+						<!-- Alert Pengajuan Usaha -->
+						<?php if ($ada_pengajuan_usaha): ?>
+							<div class="alert alert-warning" role="alert">
+								<strong>Perhatian!</strong> Ada pengajuan SK Usaha yang memerlukan persetujuan.
+							</div>
+						<?php endif; ?>
+
+						<!-- Alert Pengajuan Nikah -->
+						<?php if ($ada_pengajuan_nikah): ?>
+							<div class="alert alert-warning" role="alert">
+								<strong>Perhatian!</strong> Ada pengajuan SK Nikah yang memerlukan persetujuan.
+							</div>
+						<?php endif; ?>
 					<?php endif; ?>
 
 					<div class="row">

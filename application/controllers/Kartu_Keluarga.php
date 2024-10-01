@@ -35,7 +35,7 @@ class Kartu_Keluarga extends CI_Controller
 		$data['penduduk_list'] = $this->M_Penduduk->get_all_penduduk();
 
 		// Aturan validasi input
-		$this->form_validation->set_rules('id_penduduk', 'Nama Penduduk', 'required');
+		$this->form_validation->set_rules('id_penduduk', 'Nama Penduduk', 'required|is_unique[kartu_keluarga.id_penduduk]');
 		$this->form_validation->set_rules('kk', 'No. Kartu Keluarga', 'required|numeric|exact_length[16]');
 
 		// Cek apakah validasi berhasil

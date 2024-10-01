@@ -33,7 +33,7 @@
 					<?php endif; ?>
 					<div class="card">
 						<div class="card-header">
-							<a href="<?= site_url('kartu_keluarga') ?>" class="btn btn-sm btn-info">
+							<a href="<?= site_url('akta_kelahiran') ?>" class="btn btn-sm btn-info">
 								<i class="fa fa-arrow-left"></i>
 								Kembali Ke Daftar Akta Kelahiran
 							</a>
@@ -87,11 +87,6 @@
 											<div class="invalid-feedback">
 												<?php echo form_error('file_akta'); ?>
 											</div>
-											<?php if (isset($error)): ?>
-												<div class="text-danger">
-													<?php echo $error; ?>
-												</div>
-											<?php endif; ?>
 										</div>
 									</div>
 								</div>
@@ -113,19 +108,60 @@
 			<!-- End Footer -->
 		</div>
 	</div>
+	<!-- Modal Peringatan -->
+	<div class="modal fade" id="fileErrorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">File Upload Error</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<p id="errorMessage">File yang diunggah tidak sesuai format atau ukurannya lebih dari 2MB.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 	<?php $this->load->view('layout/master/js.php'); ?>
 	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			$('.js-example-basic-single').select2();
-		})
+
+			// Validasi file upload
+			$('form').on('submit', function(e) {
+				var fileInput = $('input[name="file_akta"]')[0];
+				var file = fileInput.files[0];
+
+				// Cek apakah ada file yang diupload
+				if (file) {
+					var fileSize = file.size / 1024 / 1024; // Convert ke MB
+					var fileType = file.type;
+
+					// Validasi ukuran file
+					if (fileSize > 2) {
+						e.preventDefault();
+						$('#errorMessage').text('Ukuran file tidak boleh lebih dari 2MB.');
+						$('#fileErrorModal').modal('show');
+						return false;
+					}
+
+					// Validasi tipe file
+					var allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
+					if ($.inArray(fileType, allowedTypes) == -1) {
+						e.preventDefault();
+						$('#errorMessage').text(
+							'Format file tidak valid. Hanya jpg, jpeg, png, dan pdf yang diperbolehkan.'
+						);
+						$('#fileErrorModal').modal('show');
+						return false;
+					}
+				}
+			});
+		});
 	</script>
 </body>
-
-
-
-
-
 
 </html>

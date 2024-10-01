@@ -12,7 +12,7 @@ $user_role = $this->session->userdata('level');
 <nav class="sidebar" id="sidebar">
 	<div class="logo-sidebar mb-3">
 		<a href="<?= site_url('dashboard') ?>" class="sidebar-brand text-white">
-			<span>Layanan Surat Desa</span>
+			<span>Layanan Surat</span>
 		</a>
 	</div>
 	<div class="content-menu-sidebar">
@@ -25,35 +25,32 @@ $user_role = $this->session->userdata('level');
 			</li>
 		</ul>
 	</div>
-	<!-- Data Master -->
-	<?php if ($user_role == 'capil' || $user_role == 'admin'): ?>
-		<div class="content-menu-sidebar">
-			<ul class="sidebar-nav">
-				<li class="sidebar-header">Data Master</li>
-				<li class="sidebar-item <?= ($this->uri->segment(1) == 'penduduk') ? 'active' : '' ?>">
-					<a href="<?= site_url('penduduk') ?>" class="sidebar-link">
-						<i class="fa fa-user-circle" aria-hidden="true"></i>
-						<span class="align-middle">Data Penduduk</span>
-					</a>
-				</li>
-				<li class="sidebar-item <?= ($this->uri->segment(1) == 'kartu_keluarga') ? 'active' : '' ?>">
-					<a href="<?= site_url('kartu_keluarga') ?>" class="sidebar-link">
-						<i class="fa fa-id-card" aria-hidden="true"></i>
-						<span class="align-middle">Data Kartu Keluarga</span>
-					</a>
-				</li>
-				<li class="sidebar-item <?= ($this->uri->segment(1) == 'akta_kelahiran') ? 'active' : '' ?>">
-					<a href="<?= site_url('akta_kelahiran') ?>" class="sidebar-link">
-						<i class="fa fa-file" aria-hidden="true"></i>
-						<span class="align-middle">Data Akta Kelahiran</span>
-					</a>
-				</li>
-			</ul>
-		</div>
-	<?php endif; ?>
+	<div class="content-menu-sidebar">
+		<ul class="sidebar-nav">
+			<li class="sidebar-header">Data Master</li>
+			<li class="sidebar-item <?= ($this->uri->segment(1) == 'penduduk') ? 'active' : '' ?>">
+				<a href="<?= site_url('penduduk') ?>" class="sidebar-link">
+					<i class="fa fa-user-circle" aria-hidden="true"></i>
+					<span class="align-middle">Data Penduduk</span>
+				</a>
+			</li>
+			<li class="sidebar-item <?= ($this->uri->segment(1) == 'kartu_keluarga') ? 'active' : '' ?>">
+				<a href="<?= site_url('kartu_keluarga') ?>" class="sidebar-link">
+					<i class="fa fa-id-card" aria-hidden="true"></i>
+					<span class="align-middle">Data Kartu Keluarga</span>
+				</a>
+			</li>
+			<li class="sidebar-item <?= ($this->uri->segment(1) == 'akta_kelahiran') ? 'active' : '' ?>">
+				<a href="<?= site_url('akta_kelahiran') ?>" class="sidebar-link">
+					<i class="fa fa-file" aria-hidden="true"></i>
+					<span class="align-middle">Data Akta Kelahiran</span>
+				</a>
+			</li>
+		</ul>
+	</div>
 
 	<!-- Menu Petugas -->
-	<?php if ($user_role == 'petugas' || $user_role == 'capil'): ?>
+	<?php if ($user_role == 'pegawai' || $user_role == 'capil'): ?>
 		<div class="content-menu-sidebar">
 			<ul class="sidebar-nav">
 				<li class="sidebar-header">Menu Petugas</li>
@@ -104,7 +101,7 @@ $user_role = $this->session->userdata('level');
 	<?php endif; ?>
 
 	<!-- Menu Admin -->
-	<?php if ($user_role == 'admin'): ?>
+	<?php if ($user_role == 'admin' || $user_role == 'capil'): ?>
 		<div class="content-menu-sidebar">
 			<ul class="sidebar-nav">
 				<li class="sidebar-header">Menu Admin</li>
@@ -154,5 +151,18 @@ $user_role = $this->session->userdata('level');
 			</ul>
 		</div>
 	<?php endif; ?>
-
+	<!-- Menu Capil -->
+	<?php if ($user_role == 'capil'): ?>
+		<div class="content-menu-sidebar">
+			<ul class="sidebar-nav">
+				<li class="sidebar-header">Akun</li>
+				<li class="sidebar-item <?= ($this->uri->segment(1) == 'admin') ? 'active' : '' ?>">
+					<a href="<?= site_url('admin') ?>" class="sidebar-link">
+						<i class="fa fa-user-o" aria-hidden="true"></i>
+						<span class="align-middle">Kelola Akun</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	<?php endif; ?>
 </nav>
