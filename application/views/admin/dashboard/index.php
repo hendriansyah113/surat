@@ -27,6 +27,19 @@
 			background-color: #f8f9fa;
 			padding: 10px;
 		}
+
+		.card-text {
+			font-size: 1.2rem;
+			color: #333;
+		}
+
+		.list-unstyled li {
+			margin: 10px 0;
+		}
+
+		.list-unstyled li i {
+			margin-right: 8px;
+		}
 	</style>
 </head>
 
@@ -49,6 +62,44 @@
 					<div class="alert alert-primary" role="alert">
 						<strong>Selamat Datang <?= $username->username ?></strong>
 					</div>
+
+					<!-- Section untuk Visi dan Misi -->
+					<div class="row mb-4">
+						<div class="col-md-12">
+							<div class="card shadow-sm border-0">
+								<div class="card-body p-4">
+									<div class="text-center">
+										<h4 class="card-title font-weight-bold text-primary">Visi</h4>
+										<hr class="w-25 mx-auto" style="border-top: 2px solid #007bff;">
+										<p class="card-text font-italic mt-3 mb-4" style="font-size: 1.2rem;">
+											"Menjadi sistem informasi kependudukan yang andal, cepat, dan responsif
+											dalam mendukung pelayanan publik yang berkualitas."
+										</p>
+									</div>
+
+									<div class="text-center">
+										<h4 class="card-title font-weight-bold text-primary">Misi</h4>
+										<hr class="w-25 mx-auto" style="border-top: 2px solid #007bff;">
+									</div>
+
+									<ul class="list-unstyled mt-3" style="font-size: 1.1rem;">
+										<li><i class="fas fa-check-circle text-success"></i> Menyediakan layanan
+											administrasi kependudukan yang mudah diakses dan efisien.</li>
+										<li><i class="fas fa-check-circle text-success"></i> Meningkatkan kecepatan
+											pemrosesan data dan dokumen kependudukan.</li>
+										<li><i class="fas fa-check-circle text-success"></i> Menyajikan data
+											kependudukan yang akurat untuk mendukung kebijakan dan pengambilan
+											keputusan.</li>
+										<li><i class="fas fa-check-circle text-success"></i> Memberikan pengalaman
+											pengguna yang nyaman dengan antarmuka yang intuitif.</li>
+										<li><i class="fas fa-check-circle text-success"></i> Meningkatkan keamanan data
+											kependudukan dengan proteksi yang optimal.</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- End Section untuk Visi dan Misi -->
 
 					<?php if ($this->session->userdata('level') === 'admin'): ?>
 						<!-- Alert Pengajuan Domisili -->
@@ -245,8 +296,9 @@
 	<!-- Footer -->
 	<?php $this->load->view('layout/master/footer.php'); ?>
 	<!-- End Footer -->
+	</d iv>
 	</div>
-	</div>
+
 
 	<?php $this->load->view('layout/master/js.php'); ?>
 </body>
